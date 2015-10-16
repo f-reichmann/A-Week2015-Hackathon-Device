@@ -90,7 +90,10 @@ public class Car implements Runnable {
 		location.addProperty("longitude", Double.toString(currentLongitude));
 	    
 		//Publish event to IoT
-		client.getClient().publishEvent("location", location, 1);
+		//TODO I added the parameter copyInRoot in the iotf client library
+		// now all data is also available in the msg root, which is necessary
+		// at least for the longitude, latitude and id
+		client.getClient().publishEvent("location", location, 1, true);
 
 	}
 
